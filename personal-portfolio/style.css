@@ -1,0 +1,839 @@
+/* ==========================================================================
+   1. GLOBAL RENDER VARIABLES & RESETS
+   ========================================================================== */
+:root {
+    --bg-dark-black: #0D0F14;     /* Deep, immersive dark slate-blue background */
+    --bg-card-box: #1A1D26;       /* Crisp dark indigo-grey tone for cards & sections */
+    --text-white: #F3F4F6;        /* Clean, high-contrast cool white for primary text */
+    --text-muted: #8A94A6;        /* Soft silver-blue for secondary captions and labels */
+    
+    /* Vibrant Cool Accent Palette */
+    --accent-lavender: #C084FC;   /* Luminous lavender for vibrant highlights */
+    --accent-blue: #3B82F6;        /* Striking deep electric blue */
+    --accent-teal: #2dd4bf;       /* Vibrant teal brand details */
+    --gradient-cool: linear-gradient(135deg, #3B82F6, #8B5CF6, #C084FC); /* Blue to Purple to Lavender */
+    --border-color: #242936;      /* Subtle cool-toned component divider line borders */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark-black);
+    color: var(--text-white);
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center { text-align: center; }
+.teal-text { color: var(--accent-teal); }
+
+/* ==========================================================================
+   2. NAVIGATION HEADER BAR
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: rgba(13, 15, 20, 0.93);
+    backdrop-filter: blur(12px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, var(--text-white), var(--accent-lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-star {
+    color: var(--accent-lavender);
+    font-size: 16px;
+    vertical-align: super;
+    margin-left: 2px;
+}
+
+.navbar nav .nav-link {
+    color: var(--text-white);
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.navbar nav .nav-link:hover {
+    color: var(--accent-lavender);
+}
+
+.btn-contact-me {
+    background: var(--gradient-cool);
+    padding: 10px 26px;
+    border-radius: 50px;
+    color: var(--bg-dark-black);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-contact-me i {
+    margin-left: 6px;
+    font-size: 12px;
+}
+
+.btn-contact-me:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+}
+
+/* ==========================================================================
+   3. UPGRADED MODERN HERO / COVER SECTION (SCROLL FIX OPTIMIZED)
+   ========================================================================== */
+.hero-section {
+    background-color: var(--bg-dark-black);
+    min-height: 100vh;
+    height: 100vh;               /* Force section to perfectly lock to the screen height */
+    padding-top: 80px;           /* Adjusted to account for fixed navbar height */
+    padding-bottom: 20px;
+    padding-left: 4%;
+    padding-right: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;            /* Prevents components from breaking viewport bounds */
+}
+
+.hero-container {
+    max-width: 1300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    height: 100%;                /* Lock grid scale into parent viewport boundaries */
+}
+
+.hero-left {
+    flex: 1.1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.greeting-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.hero-intro-box .greeting {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent-teal);
+}
+
+.greeting-line {
+    width: 60px;
+    height: 1px;
+    background-color: rgba(138, 148, 166, 0.4);
+}
+
+.hero-name {
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--text-white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -1.5px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sparkle-icon {
+    width: 32px;
+    height: 32px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.hero-title {
+    font-size: 22px;
+    color: var(--text-white);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 35px;
+}
+
+/* Cover Action Button Layout */
+.hero-cta-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.btn-primary {
+    background: var(--gradient-cool);
+    color: var(--bg-dark-black);
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid var(--border-color);
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-lavender);
+    background-color: rgba(192, 132, 252, 0.05);
+}
+
+/* Bottom Profile Social Rows */
+.hero-socials-bottom {
+    display: flex;
+    gap: 12px;
+}
+
+.hero-socials-bottom a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    background-color: rgba(26, 29, 38, 0.6);
+    color: var(--text-muted);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.hero-socials-bottom a:hover {
+    color: var(--text-white);
+    border-color: var(--accent-lavender);
+    background-color: var(--bg-card-box);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. HERO RIGHT - DECORATIVE FRAMES & CARD LOOK (image_9e93c5.jpg Matches)
+   ========================================================================== */
+.hero-right {
+    flex: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    padding: 20px;
+}
+
+/* Main Image Frame Box */
+.image-frame-modern {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    background-color: #161922;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.hero-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- Decorative Background Accents (Darker & Highly Visible) --- */
+
+/* The outer framing line tracking behind the photo */
+.decor-frame-line {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4 / 5;
+    /* Switched from low-opacity 0.4 to a rich 0.85 violet border */
+    border: 1.5px solid rgba(147, 51, 234, 0.85); 
+    border-radius: 24px;
+    z-index: 1;
+    transform: translate(-20px, -12px); /* Slightly deeper offset for better depth */
+    pointer-events: none;
+    /* Added a subtle glow to make it pop like a real UI element */
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.15); 
+}
+
+/* The dotted matrix pattern grid on the right side */
+.decor-dots-pattern {
+    position: absolute;
+    right: -25px;
+    top: 25%;
+    width: 60px;
+    height: 120px;
+    /* Boosted dot color opacity to 0.75 so they contrast beautifully */
+    background-image: radial-gradient(rgba(147, 51, 234, 0.75) 2px, transparent 2px);
+    background-size: 10px 10px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Dashed curving accent details below the photo frame */
+.decor-dashed-corner {
+    position: absolute;
+    bottom: -25px;
+    right: -25px;
+    width: 65px;
+    height: 65px;
+    /* Darkened line value to a solid 0.8 opacity neon-lavender blend */
+    border-right: 2px dashed rgba(192, 132, 252, 0.8);
+    border-bottom: 2px dashed rgba(192, 132, 252, 0.8);
+    border-bottom-right-radius: 20px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- Floating Summary Text Card --- */
+.floating-tech-card {
+    position: absolute;
+    bottom: -10px;
+    left: -50px;
+    background-color: rgba(22, 25, 34, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 210px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    animation: float 4s ease-in-out infinite;
+}
+
+.card-icon-circle {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.45;
+    font-weight: 500;
+}
+
+/* Text highlight variant matching the image */
+.purple-highlight {
+    color: #9333EA;
+    font-weight: 600;
+}
+
+/* The decorative line inside the bottom of the card */
+.card-accent-line {
+    width: 35px;
+    height: 2px;
+    background-color: rgba(147, 51, 234, 0.7);
+    border-radius: 2px;
+    margin-top: 2px;
+}
+/* ==========================================================================
+   4. ABOUT SECTION
+   ========================================================================== */
+.about-section {
+    padding: 100px 0;
+    background-color: var(--bg-dark-black);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--accent-lavender);
+    letter-spacing: 2px;
+}
+
+.about-text {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+    line-height: 1.8;
+    color: var(--text-white);
+    opacity: 0.85;
+    font-size: 16px;
+}
+
+.meta-anchors {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.anchor-item {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 220px;
+    background-color: var(--bg-card-box);
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.anchor-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--text-muted);
+}
+
+.teal-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.anchor-item h4 {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.anchor-item p {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-white);
+}
+
+/* ==========================================================================
+   5. SKILLS GRID SECTION (THEMED PURPLE INTEGRATION)
+   ========================================================================== */
+.skills-section {
+    padding: 100px 0;
+    background-color: #090B0E; 
+    border-bottom: 1px solid var(--border-color);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background-color: var(--bg-card-box);
+    padding: 30px 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(147, 51, 234, 0.05); /* Faint theme border */
+}
+
+/* Card Hover State - Seamlessly mirrors the glowing look of your navbar button */
+.skill-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(192, 132, 252, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+/* Icons: Styled in a vibrant, rich theme purple with an atmospheric glow */
+.skill-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #a855f7; /* Vibrant theme purple/violet */
+    filter: drop-shadow(0 2px 8px rgba(168, 85, 247, 0.25));
+    transition: all 0.3s ease;
+}
+
+/* Icon Hover State: Shifts into a brilliant luminous lavender */
+.skill-card:hover .skill-icon {
+    color: #c084fc; /* Bright lavender highlight */
+    filter: drop-shadow(0 4px 12px rgba(192, 132, 252, 0.5));
+    transform: scale(1.05);
+}
+
+/* Names: Kept at a slightly different, clean purple-tinted white for readability */
+.skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: #e2e8f0; /* Crisp slate-white for distinct contrast from the icon */
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* Name Hover State: Fully matches the glowing text highlight */
+.skill-card:hover .skill-name {
+    color: var(--text-white);
+}
+/* Completely removed all individual .html-color, .css-color, etc. blocks 
+   so that every icon dynamically uses the clean, uniform purple-slate theme */
+
+/* ==========================================================================
+   6. PROJECTS SHOWCASE SECTION
+   ========================================================================== */
+.projects-section {
+    padding: 100px 0;
+    background-color: var(--bg-dark-black);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.project-card {
+    background-color: var(--bg-card-box);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border: 1px solid var(--border-color);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.project-banner {
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #161922, #090A0E);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.overlay-graphic {
+    text-align: center;
+    color: var(--text-white);
+}
+
+.overlay-graphic i {
+    font-size: 52px;
+    display: block;
+    margin-bottom: 12px;
+    background: var(--gradient-cool);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.overlay-graphic span {
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 18px;
+    color: var(--text-white);
+}
+
+.project-details {
+    padding: 25px;
+}
+
+.click-notice {
+    font-size: 11px;
+    color: var(--accent-lavender);
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.project-title-row h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.arrow-icon {
+    font-size: 16px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .arrow-icon {
+    color: var(--accent-blue);
+}
+
+.project-desc {
+    font-size: 14px;
+    color: var(--text-white);
+    opacity: 0.75;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   7. UNIFIED CONTACT SECTION
+   ========================================================================== */
+.contact-section {
+    padding: 100px 0;
+    background-color: var(--bg-card-box); 
+    color: var(--text-white);
+    border-top: 1px solid var(--border-color);
+}
+
+.contact-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-left {
+    flex: 1;
+    padding-right: 60px;
+}
+
+.contact-left h2 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--text-white), var(--accent-lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-subtext {
+    color: var(--text-white);
+    opacity: 0.8;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+
+.contact-footer-socials a {
+    color: var(--text-white);
+    font-size: 24px;
+    margin-right: 25px;
+    transition: all 0.3s ease;
+}
+
+.contact-footer-socials a:hover {
+    color: var(--accent-lavender);
+    transform: scale(1.1);
+}
+
+.contact-right {
+    flex: 1;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--bg-dark-black); 
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-white);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus {
+    border-color: var(--accent-lavender);
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.1);
+}
+
+.btn-submit {
+    background: var(--gradient-cool);
+    border: none;
+    color: var(--bg-dark-black);
+    padding: 16px 45px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+}
+
+/* ==========================================================================
+   8. DYNAMIC KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* ==========================================================================
+   9. MEDIA QUERIES (Responsive Flow Configurations)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .navbar nav {
+        display: none; 
+    }
+    .hero-section {
+        height: auto; 
+        min-height: 100vh;
+        padding: 120px 20px 60px 20px;
+    }
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .hero-left {
+        align-items: center;
+    }
+    .greeting-wrapper {
+        justify-content: center;
+    }
+    .hero-cta-group {
+        justify-content: center;
+    }
+    .hero-socials-bottom {
+        justify-content: center;
+    }
+    .floating-tech-card {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        margin: 20px auto 0 auto;
+    }
+    .image-frame-modern {
+        max-width: 340px;
+    }
+    .meta-anchors {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-split {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .contact-left {
+        padding-right: 0;
+        text-align: center;
+    }
+    .contact-footer-socials {
+        justify-content: center;
+        display: flex;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-name {
+        font-size: 52px;
+    }
+    .anchor-item {
+        min-width: 100%;
+    }
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+}
