@@ -68,6 +68,10 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+.logo{
+    text-decoration: none;
+    color: inherit;
+}
 .logo-star {
     color: var(--accent-lavender);
     font-size: 16px;
