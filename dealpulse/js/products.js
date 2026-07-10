@@ -1,5 +1,5 @@
 const productGrid = document.getElementById("productGrid");
-
+const sortDropdown = document.getElementById("sortDropdown");
 function displayProducts(productList) {
     productGrid.innerHTML = "";
 
@@ -31,4 +31,23 @@ searchInput.addEventListener("input", () => {
 
     displayProducts(filteredProducts);
 
+});
+
+sortDropdown.addEventListener("change", () => {
+
+    let sortedProducts = [...products];
+
+    if(sortDropdown.value === "low-high"){
+        sortedProducts.sort((a,b) => a.price - b.price);
+    }
+
+    else if(sortDropdown.value === "high-low"){
+        sortedProducts.sort((a,b) => b.price - a.price);
+    }
+
+    else if(sortDropdown.value === "rating"){
+        sortedProducts.sort((a,b) => b.rating - a.rating);
+    }
+
+    displayProducts(sortedProducts);
 });
