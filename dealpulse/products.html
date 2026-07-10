@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealPulse - Products</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">DealPulse</div>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="#">Compare</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Products Page -->
+    <main class="products-page">
+
+        <!-- Filters Sidebar -->
+        <aside class="filters">
+
+            <h2>Filters</h2>
+
+            <!-- Categories -->
+            <div class="filter-group">
+                <h3>Categories</h3>
+
+                <label>
+                    <input type="checkbox" value="Electronics">
+                    Electronics
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Fashion">
+                    Fashion
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Books">
+                    Books
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Home">
+                    Home
+                </label>
+            </div>
+
+            <!-- Price -->
+            <div class="filter-group">
+                <h3>Price Range</h3>
+
+                <input
+                    type="range"
+                    min="0"
+                    max="50000"
+                    value="50000"
+                >
+
+                <p>₹0 - ₹50,000</p>
+            </div>
+
+            <!-- Rating -->
+            <div class="filter-group">
+                <h3>Rating</h3>
+
+                <label>
+                    <input type="radio" name="rating">
+                    4★ & Above
+                </label>
+
+                <label>
+                    <input type="radio" name="rating">
+                    3★ & Above
+                </label>
+            </div>
+
+        </aside>
+
+        <!-- Products Section -->
+        <section class="products-section">
+
+            <!-- Search + Sort -->
+            <div class="top-bar">
+
+                <input
+                    type="text"
+                    placeholder="Search products..."
+                    class="search-box"
+                >
+
+                <select class="sort-dropdown">
+                    <option>Sort By</option>
+                    <option>Price Low to High</option>
+                    <option>Price High to Low</option>
+                    <option>Highest Rated</option>
+                </select>
+
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid">
+
+                <div class="product-card">
+
+                    <img
+                        src="https://placehold.co/300x200"
+                        alt="Product"
+                    >
+
+                    <h3>Samsung Galaxy M14</h3>
+
+                    <p class="rating">⭐ 4.3</p>
+
+                    <p class="price">₹12,999</p>
+
+                    <div class="card-buttons">
+                        <button>Compare</button>
+                        <button>Add To Cart</button>
+                    </div>
+
+                </div>
+
+                <div class="product-card">
+
+                    <img
+                        src="https://placehold.co/300x200"
+                        alt="Product"
+                    >
+
+                    <h3>Boat Rockerz 450</h3>
+
+                    <p class="rating">⭐ 4.5</p>
+
+                    <p class="price">₹1,499</p>
+
+                    <div class="card-buttons">
+                        <button>Compare</button>
+                        <button>Add To Cart</button>
+                    </div>
+
+                </div>
+
+                <div class="product-card">
+
+                    <img
+                        src="https://placehold.co/300x200"
+                        alt="Product"
+                    >
+
+                    <h3>HP Laptop</h3>
+
+                    <p class="rating">⭐ 4.4</p>
+
+                    <p class="price">₹49,999</p>
+
+                    <div class="card-buttons">
+                        <button>Compare</button>
+                        <button>Add To Cart</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/products.js"></script>
+
+</body>
+</html>
