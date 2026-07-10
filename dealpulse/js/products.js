@@ -1,6 +1,8 @@
 const productGrid = document.getElementById("productGrid");
 const sortDropdown = document.getElementById("sortDropdown");
 const categoryFilters =document.querySelectorAll(".category-filter");
+const priceRange = document.getElementById("priceRange");
+const priceValue = document.getElementById("priceValue");
 function displayProducts(productList) {
     productGrid.innerHTML = "";
 
@@ -81,5 +83,18 @@ categoryFilters.forEach(checkbox => {
         displayProducts(filteredProducts);
 
     });
+
+});
+priceRange.addEventListener("input", () => {
+
+    const maxPrice = Number(priceRange.value);
+
+    priceValue.textContent = `₹0 - ₹${maxPrice}`;
+
+    const filteredProducts = products.filter(product =>
+        product.price <= maxPrice
+    );
+
+    displayProducts(filteredProducts);
 
 });

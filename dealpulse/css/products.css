@@ -54,6 +54,11 @@
 .product-card:hover{
     transform:translateY(-5px);
 }
+.category{
+    color: gray;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
 .filter-group{
     margin-bottom:25px;
 }
