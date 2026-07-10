@@ -19,5 +19,16 @@ function displayProducts(productList) {
         `;
     });
 }
-
+const searchInput = document.getElementById("searchInput");
 displayProducts(products);
+searchInput.addEventListener("input", () => {
+
+    const searchValue = searchInput.value.toLowerCase();
+
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchValue)
+    );
+
+    displayProducts(filteredProducts);
+
+});
