@@ -21,7 +21,9 @@ function displayProducts(productList) {
 
         <div class="card-buttons">
             <button>Compare</button>
-            <button>Add To Cart</button>
+            <button class="add-to-cart" data-id="${product.id}">
+    Add To Cart
+</button>
         </div>
     </div>
 `;
@@ -40,7 +42,30 @@ searchInput.addEventListener("input", () => {
     displayProducts(filteredProducts);
 
 });
+function addToCart(productId){
 
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const selectedProduct = products.find(product =>
+        product.id === productId
+    );
+
+    cart.push(selectedProduct);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Product added to cart!");
+}
+document.addEventListener("click", (e) => {
+
+    if(e.target.classList.contains("add-to-cart")){
+
+        const productId = Number(e.target.dataset.id);
+
+        addToCart(productId);
+    }
+
+});
 sortDropdown.addEventListener("change", () => {
 
     let sortedProducts = [...products];
