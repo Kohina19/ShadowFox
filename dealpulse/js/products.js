@@ -42,15 +42,27 @@ searchInput.addEventListener("input", () => {
     displayProducts(filteredProducts);
 
 });
-function addToCart(productId){
+function addToCart(productId) {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const selectedProduct = products.find(product =>
-        product.id === productId
+    const selectedProduct = products.find(
+        product => product.id === productId
     );
 
-    cart.push(selectedProduct);
+    const existingProduct = cart.find(
+        item => item.id === productId
+    );
+
+    if(existingProduct){
+        existingProduct.quantity += 1;
+    }
+    else{
+        cart.push({
+            ...selectedProduct,
+            quantity: 1
+        });
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
