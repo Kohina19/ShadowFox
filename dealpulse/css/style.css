@@ -156,3 +156,31 @@ footer{
     color:var(--white);
 
 }
+@media(max-width:768px){
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+        padding:15px;
+    }
+
+    ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:15px;
+    }
+
+}
+@media(max-width:768px){
+
+    .hero{
+        flex-direction:column;
+        padding:40px 20px;
+    }
+
+    .hero-image img{
+        max-width:250px;
+        margin-top:20px;
+    }
+
+}
