@@ -1,0 +1,80 @@
+.success-page{
+    min-height:80vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+}
+
+.success-card{
+    background:white;
+
+    padding:50px 40px;
+
+    border-radius:15px;
+
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+
+    text-align:center;
+
+    max-width:600px;
+    width:100%;
+}
+
+.success-icon{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.success-card h1{
+    margin-bottom:15px;
+}
+
+.order-id{
+    color:#666;
+    margin-bottom:20px;
+}
+
+.success-card p{
+    margin:10px 0;
+    color:#555;
+    line-height:1.6;
+}
+
+.success-actions{
+    margin-top:30px;
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.continue-btn,
+.home-btn{
+    padding:12px 24px;
+
+    border:none;
+    border-radius:8px;
+
+    background:var(--primary);
+    color:white;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:0.2s;
+}
+
+.continue-btn:hover,
+.home-btn:hover{
+    transform:translateY(-2px);
+}
+
+.success-actions a{
+    text-decoration:none;
+}
