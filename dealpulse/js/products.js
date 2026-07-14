@@ -5,6 +5,14 @@ const priceRange = document.getElementById("priceRange");
 const priceValue = document.getElementById("priceValue");
 function displayProducts(productList) {
     productGrid.innerHTML = "";
+    if(productList.length === 0){
+
+        productGrid.innerHTML = `
+            <h2>No products found</h2>
+        `;
+
+        return;
+    }
 
     productList.forEach(product => {
         productGrid.innerHTML += `
@@ -20,8 +28,12 @@ function displayProducts(productList) {
         <p class="price">₹${product.price}</p>
 
         <div class="card-buttons">
-            <button>Compare</button>
-            <button class="add-to-cart" data-id="${product.id}">
+        <button
+    class="compare-btn"
+    data-id="${product.id}"
+>
+    Compare
+</button>            <button class="add-to-cart" data-id="${product.id}">
     Add To Cart
 </button>
         </div>
@@ -76,6 +88,13 @@ document.addEventListener("click", (e) => {
 
         addToCart(productId);
     }
+    if(e.target.classList.contains("compare-btn")){
+
+    const productId =
+        Number(e.target.dataset.id);
+
+    addToCompare(productId);
+}
 
 });
 sortDropdown.addEventListener("change", () => {
@@ -135,3 +154,37 @@ priceRange.addEventListener("input", () => {
     displayProducts(filteredProducts);
 
 });
+function addToCompare(productId){
+
+    let compare =
+        JSON.parse(
+            localStorage.getItem("compare")
+        ) || [];
+
+    const selectedProduct =
+        products.find(
+            product => product.id === productId
+        );
+
+    const exists =
+        compare.find(
+            item => item.id === productId
+        );
+
+    if(exists){
+        alert("Already added");
+        return;
+    }
+    if(compare.length >= 4){
+    alert("Maximum 4 products can be compared");
+    return;
+}
+    compare.push(selectedProduct);
+
+    localStorage.setItem(
+        "compare",
+        JSON.stringify(compare)
+    );
+
+    alert("Added to compare");
+}
