@@ -16,7 +16,10 @@ function displayProducts(productList) {
 
     productList.forEach(product => {
         productGrid.innerHTML += `
-    <div class="product-card">
+        <div
+    class="product-card"
+    onclick="viewProduct(${product.id})"
+>
         <img src="${product.image}" alt="${product.name}">
         
         <h3>${product.name}</h3>
@@ -187,4 +190,10 @@ function addToCompare(productId){
     );
 
     alert("Added to compare");
+}
+function viewProduct(id){
+
+    window.location.href =
+        `product.html?id=${id}`;
+
 }
