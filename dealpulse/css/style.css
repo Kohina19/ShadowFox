@@ -156,6 +156,27 @@ footer{
     color:var(--white);
 
 }
+#toast{
+    position:fixed;
+
+    bottom:20px;
+    right:20px;
+
+    background:var(--primary);
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    opacity:0;
+
+    transition:0.3s;
+
+    pointer-events:none;
+
+    z-index:9999;
+}
 @media(max-width:768px){
 
     nav{
