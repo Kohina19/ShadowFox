@@ -47,9 +47,21 @@ productDetails.innerHTML = `
 
 <p>⭐ ${product.rating}</p>
 
-<p class="product-price">
-    ₹${product.price.toLocaleString()}
-</p>
+<div class="price-section">
+
+    <p class="original-price">
+        ₹${product.originalPrice.toLocaleString()}
+    </p>
+
+    <p class="product-price">
+        ₹${product.price.toLocaleString()}
+    </p>
+
+    <span class="discount-badge">
+        ${product.discount}% OFF
+    </span>
+
+</div>
 
 <p>${product.description}</p>
 
@@ -118,9 +130,17 @@ relatedProducts.forEach(item => {
             <h3>${item.name}</h3>
 
             <p>⭐ ${item.rating}</p>
+            <p class="original-price">
+    ₹${item.originalPrice.toLocaleString()}
+</p>
 
-            <p>₹${item.price.toLocaleString()}</p>
+<p class="related-price">
+    ₹${item.price.toLocaleString()}
+</p>
 
+<span class="discount-badge">
+    ${item.discount}% OFF
+</span>
         </div>
     `;
 });
@@ -153,9 +173,17 @@ recentProducts
 
                 <p>⭐ ${item.rating}</p>
 
-                <p>
-                    ₹${item.price.toLocaleString()}
-                </p>
+                <p class="original-price">
+    ₹${item.originalPrice.toLocaleString()}
+</p>
+
+<p class="related-price">
+    ₹${item.price.toLocaleString()}
+</p>
+
+<span class="discount-badge">
+    ${item.discount}% OFF
+</span>
 
             </div>
 

@@ -92,13 +92,25 @@ compareContainer.innerHTML = "";
     ${compare.map(product =>
 
         `<td>
-            ₹${product.price.toLocaleString()}
+
+            <p class="compare-original-price">
+                ₹${(product.originalPrice || product.price).toLocaleString()}
+            </p>
+
+            <p class="compare-price">
+                ₹${product.price.toLocaleString()}
+            </p>
+
+            <span class="compare-discount">
+                ${product.discount || 0}% OFF
+            </span>
 
             ${
                 product.price === lowestPrice
-                ? "<br>✅ Best Price"
+                ? "<br><br>✅ Best Price"
                 : ""
             }
+
         </td>`
 
     ).join("")}

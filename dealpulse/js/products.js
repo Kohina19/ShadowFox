@@ -1,12 +1,79 @@
 const productGrid = document.getElementById("productGrid");
 const sortDropdown = document.getElementById("sortDropdown");
 const categoryFilters =document.querySelectorAll(".category-filter");
+
 const ratingFilters =
     document.querySelectorAll(
         ".rating-filter"
     );
 const priceRange = document.getElementById("priceRange");
 const priceValue = document.getElementById("priceValue");
+function applyFilters(){
+
+    let filteredProducts = [...products];
+
+    // Search Filter
+    const searchValue =
+        searchInput.value.toLowerCase();
+
+    filteredProducts =
+        filteredProducts.filter(product =>
+            product.name
+                .toLowerCase()
+                .includes(searchValue)
+        );
+
+    // Category Filter
+    const selectedCategories = [];
+
+    categoryFilters.forEach(cb => {
+
+        if(cb.checked){
+            selectedCategories.push(cb.value);
+        }
+
+    });
+
+    if(selectedCategories.length > 0){
+
+        filteredProducts =
+            filteredProducts.filter(product =>
+                selectedCategories.includes(
+                    product.category
+                )
+            );
+
+    }
+
+    // Price Filter
+    const maxPrice =
+        Number(priceRange.value);
+
+    filteredProducts =
+        filteredProducts.filter(product =>
+            product.price <= maxPrice
+        );
+    const selectedRatingElement =
+    document.querySelector(
+        ".rating-filter:checked"
+    );
+
+const selectedRating =
+    selectedRatingElement
+        ? Number(selectedRatingElement.value)
+        : 0;
+
+if(selectedRating > 0){
+
+    filteredProducts =
+        filteredProducts.filter(product =>
+            product.rating >=
+            Number(selectedRating)
+        );
+
+}
+    displayProducts(filteredProducts);
+}
 function showToast(message){
 
     const toast =
@@ -105,8 +172,17 @@ ${
 <p class="category">${product.category}</p>
 
         <p class="rating">⭐ ${product.rating}</p>
+        <p class="original-price">
+    ₹${product.originalPrice.toLocaleString()}
+</p>
 
-        <p class="price">₹${product.price}</p>
+<p class="price">
+    ₹${product.price.toLocaleString()}
+</p>
+
+<span class="discount-badge">
+    ${product.discount}% OFF
+</span>
 
         <div class="card-buttons">
 
@@ -137,19 +213,12 @@ ${
     });
 }
 const searchInput = document.getElementById("searchInput");
-displayProducts(products);
+applyFilters();
 updateCartCount();
-searchInput.addEventListener("input", () => {
-
-    const searchValue = searchInput.value.toLowerCase();
-
-    const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(searchValue)
-    );
-
-    displayProducts(filteredProducts);
-
-});
+searchInput.addEventListener(
+    "input",
+    applyFilters
+);
 function addToCart(productId) {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -219,61 +288,33 @@ sortDropdown.addEventListener("change", () => {
 });
 categoryFilters.forEach(checkbox => {
 
-    checkbox.addEventListener("change", () => {
-
-        const selectedCategories = [];
-
-        categoryFilters.forEach(cb => {
-            if(cb.checked){
-                selectedCategories.push(cb.value);
-            }
-        });
-
-        if(selectedCategories.length === 0){
-            displayProducts(products);
-            return;
-        }
-
-        const filteredProducts = products.filter(product =>
-            selectedCategories.includes(product.category)
-        );
-
-        displayProducts(filteredProducts);
-
-    });
-
-});
-priceRange.addEventListener("input", () => {
-
-    const maxPrice = Number(priceRange.value);
-
-    priceValue.textContent = `₹0 - ₹${maxPrice}`;
-
-    const filteredProducts = products.filter(product =>
-        product.price <= maxPrice
+    checkbox.addEventListener(
+        "change",
+        applyFilters
     );
 
-    displayProducts(filteredProducts);
-
 });
+
 ratingFilters.forEach(radio => {
 
-    radio.addEventListener("change", () => {
-
-        const selectedRating =
-            Number(radio.value);
-
-        const filteredProducts =
-            products.filter(
-                product =>
-                    product.rating >= selectedRating
-            );
-
-        displayProducts(filteredProducts);
-
-    });
+    radio.addEventListener(
+        "change",
+        applyFilters
+    );
 
 });
+priceRange.addEventListener(
+    "input",
+    () => {
+
+        priceValue.textContent =
+            `₹0 - ₹${priceRange.value}`;
+
+        applyFilters();
+
+    }
+);
+
 function addToCompare(productId){
 
     let compare =
@@ -356,7 +397,7 @@ function addToWishlist(productId){
         showToast("Added to Wishlist");
     }
 
-    displayProducts(products);
+    applyFilters();
 }
 function updateWishlistCount(){
 

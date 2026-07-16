@@ -55,7 +55,35 @@
     border-radius:15px;
     box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
+.original-price{
 
+    text-decoration:line-through;
+
+    color:#888;
+
+    font-size:0.9rem;
+
+    margin-bottom:5px;
+}
+
+.discount-badge{
+
+    display:inline-block;
+
+    background:#ff4d4d;
+
+    color:white;
+
+    padding:4px 8px;
+
+    border-radius:5px;
+
+    font-size:0.8rem;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+}
 @media(max-width:768px){
 
     .wishlist-page{

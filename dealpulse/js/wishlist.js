@@ -55,10 +55,17 @@ function displayWishlist(){
                 <p>
                     ⭐ ${product.rating}
                 </p>
+                <p class="original-price">
+    ₹${product.originalPrice.toLocaleString()}
+</p>
 
-                <p class="wishlist-price">
-                    ₹${product.price.toLocaleString()}
-                </p>
+<p class="wishlist-price">
+    ₹${product.price.toLocaleString()}
+</p>
+
+<span class="discount-badge">
+    ${product.discount}% OFF
+</span>
 
                 <div class="wishlist-actions">
 
