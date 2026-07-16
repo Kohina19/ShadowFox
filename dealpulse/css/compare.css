@@ -161,3 +161,11 @@
 .compare-table{
     min-width:900px;
 }
+.compare-table td{
+    padding:15px;
+    text-align: center;
+}
+
+.compare-table td br{
+    margin-bottom:5px;
+}

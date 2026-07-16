@@ -152,6 +152,7 @@ button:hover{
 footer{
     text-align:center;
     padding:20px;
+    margin-top:40px;
     background-color:var(--primary);
     color:var(--white);
 

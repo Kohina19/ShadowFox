@@ -5,6 +5,19 @@ let compare =
     JSON.parse(
         localStorage.getItem("compare")
     ) || [];
+const lowestPrice =
+    Math.min(
+        ...compare.map(
+            product => product.price
+        )
+    );
+
+const highestRating =
+    Math.max(
+        ...compare.map(
+            product => product.rating
+        )
+    );
 
 function displayCompare(){
 
@@ -73,19 +86,43 @@ compareContainer.innerHTML = "";
         ).join("")}
     </tr>
 
-    <tr>
-        <td>Price</td>
-        ${compare.map(product =>
-            `<td>₹${product.price.toLocaleString()}</td>`
-        ).join("")}
-    </tr>
+   <tr>
+    <td>Price</td>
+
+    ${compare.map(product =>
+
+        `<td>
+            ₹${product.price.toLocaleString()}
+
+            ${
+                product.price === lowestPrice
+                ? "<br>✅ Best Price"
+                : ""
+            }
+        </td>`
+
+    ).join("")}
+
+</tr>
 
     <tr>
-        <td>Rating</td>
-        ${compare.map(product =>
-            `<td>⭐ ${product.rating}</td>`
-        ).join("")}
-    </tr>
+    <td>Rating</td>
+
+    ${compare.map(product =>
+
+        `<td>
+            ⭐ ${product.rating}
+
+            ${
+                product.rating === highestRating
+                ? "<br>🏆 Highest Rated"
+                : ""
+            }
+        </td>`
+
+    ).join("")}
+
+</tr>
     <tr>
     <td>Action</td>
     ${compare.map(product => `

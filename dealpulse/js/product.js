@@ -9,6 +9,10 @@ const product =
     products.find(
         p => p.id === productId
     );
+const productDetails =
+    document.getElementById(
+        "productDetails"
+    );
 if(!product){
 
     productDetails.innerHTML = `
@@ -17,9 +21,14 @@ if(!product){
 
     throw new Error("Product not found");
 }
-const productDetails =
+
+    const relatedProductsContainer =
     document.getElementById(
-        "productDetails"
+        "relatedProducts"
+    );
+    const recentlyViewedContainer =
+    document.getElementById(
+        "recentlyViewed"
     );
 
 productDetails.innerHTML = `
@@ -65,6 +74,93 @@ productDetails.innerHTML = `
 
     </div>
 `;
+let recentlyViewed =
+    JSON.parse(
+        localStorage.getItem(
+            "recentlyViewed"
+        )
+    ) || [];
+
+recentlyViewed =
+    recentlyViewed.filter(
+        item => item.id !== product.id
+    );
+
+recentlyViewed.unshift(product);
+
+recentlyViewed =
+    recentlyViewed.slice(0,4);
+
+localStorage.setItem(
+    "recentlyViewed",
+    JSON.stringify(recentlyViewed)
+);
+const relatedProducts =
+    products.filter(
+        p =>
+            p.category === product.category &&
+            p.id !== product.id
+    );
+
+relatedProducts.forEach(item => {
+
+    relatedProductsContainer.innerHTML += `
+        <div
+            class="related-card"
+            onclick="viewProduct(${item.id})"
+        >
+
+            <img
+                src="${item.image}"
+                alt="${item.name}"
+            >
+
+            <h3>${item.name}</h3>
+
+            <p>⭐ ${item.rating}</p>
+
+            <p>₹${item.price.toLocaleString()}</p>
+
+        </div>
+    `;
+});
+const recentProducts =
+    JSON.parse(
+        localStorage.getItem(
+            "recentlyViewed"
+        )
+    ) || [];
+
+recentProducts
+    .filter(
+        item => item.id !== product.id
+    )
+    .forEach(item => {
+
+        recentlyViewedContainer.innerHTML += `
+
+            <div
+                class="related-card"
+                onclick="viewProduct(${item.id})"
+            >
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                >
+
+                <h3>${item.name}</h3>
+
+                <p>⭐ ${item.rating}</p>
+
+                <p>
+                    ₹${item.price.toLocaleString()}
+                </p>
+
+            </div>
+
+        `;
+    });
 function addToCart(productId){
 
     let cart =
@@ -128,4 +224,10 @@ function addToCompare(productId){
     );
 
     alert("Added to Compare");
+}
+function viewProduct(id){
+
+    window.location.href =
+        `product.html?id=${id}`;
+
 }

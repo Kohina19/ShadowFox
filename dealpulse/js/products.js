@@ -1,6 +1,10 @@
 const productGrid = document.getElementById("productGrid");
 const sortDropdown = document.getElementById("sortDropdown");
 const categoryFilters =document.querySelectorAll(".category-filter");
+const ratingFilters =
+    document.querySelectorAll(
+        ".rating-filter"
+    );
 const priceRange = document.getElementById("priceRange");
 const priceValue = document.getElementById("priceValue");
 function showToast(message){
@@ -49,12 +53,23 @@ productCount.textContent =
     productGrid.innerHTML = "";
     if(productList.length === 0){
 
-        productGrid.innerHTML = `
-            <h2>No products found</h2>
-        `;
+    productGrid.innerHTML = `
 
-        return;
-    }
+        <div class="empty-state">
+
+            <h2>🔍 No Products Found</h2>
+
+            <p>
+                Try changing your search
+                or filters.
+            </p>
+
+        </div>
+
+    `;
+
+    return;
+}
     const wishlist =
         JSON.parse(
             localStorage.getItem("wishlist")
@@ -79,7 +94,15 @@ productCount.textContent =
         
         <h3>${product.name}</h3>
 
-        <p class="category">${product.category}</p>
+${
+    product.rating >= 4.5
+    ? `<span class="badge">
+            ⭐ Best Seller
+       </span>`
+    : ""
+}
+
+<p class="category">${product.category}</p>
 
         <p class="rating">⭐ ${product.rating}</p>
 
@@ -233,6 +256,24 @@ priceRange.addEventListener("input", () => {
     displayProducts(filteredProducts);
 
 });
+ratingFilters.forEach(radio => {
+
+    radio.addEventListener("change", () => {
+
+        const selectedRating =
+            Number(radio.value);
+
+        const filteredProducts =
+            products.filter(
+                product =>
+                    product.rating >= selectedRating
+            );
+
+        displayProducts(filteredProducts);
+
+    });
+
+});
 function addToCompare(productId){
 
     let compare =
@@ -295,7 +336,7 @@ function addToWishlist(productId){
             "wishlist",
             JSON.stringify(wishlist)
         );
-
+        updateWishlistCount();
         showToast("Removed from Wishlist");
     }
     else{
@@ -311,9 +352,30 @@ function addToWishlist(productId){
             "wishlist",
             JSON.stringify(wishlist)
         );
-
+        updateWishlistCount();
         showToast("Added to Wishlist");
     }
 
     displayProducts(products);
 }
+function updateWishlistCount(){
+
+    const wishlist =
+        JSON.parse(
+            localStorage.getItem("wishlist")
+        ) || [];
+
+    const wishlistLink =
+    document.getElementById(
+        "wishlistLink"
+    );
+
+if(wishlistLink){
+
+    wishlistLink.textContent =
+        `Wishlist (${wishlist.length})`;
+
+}
+
+}
+updateWishlistCount();

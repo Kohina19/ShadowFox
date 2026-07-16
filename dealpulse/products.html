@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="wishlist.html" id="wishlistLink">Wishlist</a></li>
                 <li><a href="compare.html">Compare</a></li>
                 <li><a href="cart.html" id="cartLink">Cart</a></li>
                 
@@ -79,12 +79,14 @@
                 <h3>Rating</h3>
 
                 <label>
-                    <input type="radio" name="rating">
+                    <input type="radio" name="rating" value="4"
+    class="rating-filter">
                     4★ & Above
                 </label>
 
                 <label>
-                    <input type="radio" name="rating">
+                    <input type="radio" name="rating" value="3"
+    class="rating-filter">
                     3★ & Above
                 </label>
             </div>
@@ -121,7 +123,11 @@
 
     </main>
     <div id="toast"></div>
+    <footer>
+    <p>© 2026 DealPulse. All Rights Reserved.</p>
+</footer>
     <script src="data/products.js"></script>
+    <script src="js/navbar.js"></script>
     <script src="js/products.js"></script>
 
 
