@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealPulse - Cart</title>
-
+    <meta
+    name="description"
+    content="Review your selected products and proceed to checkout securely."
+>
+    <title>Shopping Cart | DealPulse</title>
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/cart.css">
 </head>
@@ -35,11 +39,20 @@
 
         <div class="cart-summary" id="cartSummary">
 
-    <h2 id="cartTotal">Total: ₹0</h2>
+    <div id="cartTotal">
+    <p>Subtotal: ₹0</p>
+    <p>Products: 0</p>
+    <p>Quantity: 0</p>
+    <hr>
+    <h2>Total: ₹0</h2>
+</div>
     <button id="clearCartBtn">
     Clear Cart
 </button>
-<a href="checkout.html">
+<a
+    href="checkout.html"
+    id="checkoutLink"
+>
     <button
         class="checkout-btn"
         id="checkoutBtn"

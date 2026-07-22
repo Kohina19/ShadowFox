@@ -5,8 +5,8 @@
 }
 
 :root{
-    --primary:#6C63FF;
-    --secondary:#8B5CF6;
+    --primary:#4F46E5;
+--secondary:#7C3AED;
     --light:#F8F9FF;
     --dark:#222;
     --white:#fff;
@@ -106,10 +106,13 @@ h2{
 }
 .category-card:hover{
     transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
-.categories,
+.categories{
+    padding:60px 10% 30px;
+}
 .featured-products{
-    padding:60px 10%;
+    padding:30px 10% 60px;
 }
 
 .product-container{
@@ -123,6 +126,7 @@ h2{
     border-radius:10px;
     box-shadow:0 0 10px rgba(0,0,0,0.1);
     transition:0.3s;
+    cursor:pointer;
 }
 .product-card:hover{
     transform:translateY(-5px);
@@ -135,6 +139,29 @@ h2{
     object-fit:cover;
     border-radius:8px;
     margin-bottom:15px;
+}
+.original-price{
+    text-decoration:line-through;
+    color:#666;
+    font-size:0.9rem;
+}
+
+.price{
+    color:var(--primary);
+    font-size:1.3rem;
+    font-weight:bold;
+    margin:5px 0;
+}
+
+.discount-badge{
+    display:inline-block;
+    background:#15803D;
+    color:white;
+    padding:5px 10px;
+    border-radius:6px;
+    font-size:0.8rem;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 button{
     background:var(--primary);
@@ -177,6 +204,39 @@ footer{
     pointer-events:none;
 
     z-index:9999;
+}
+.toast{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    background:#222;
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    opacity:0;
+
+    transition:0.3s;
+
+    z-index:1000;
+}
+html,
+body{
+    height:100%;
+    margin:0;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+main{
+    flex:1;
 }
 @media(max-width:768px){
 

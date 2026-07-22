@@ -112,19 +112,46 @@
 @media(max-width:768px){
 
     .compare-page{
-        padding:20px;
+        padding:15px;
+    } 
+     .table-wrapper{
+        overflow-x:auto;
+        width:100%;
+    } 
+     nav{
+        flex-direction:column;
+        gap:10px;
     }
 
-    .compare-container{
-        grid-template-columns:1fr;
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+    .compare-table{
+        min-width:500px;
+    }
+    .compare-table th,
+    .compare-table td{
+        padding:8px;
+        font-size:13px;
     }
 
-    .compare-card img{
-        height:220px;
+    .compare-image{
+        width:60px;
+        height:60px;
+    }
+    /* .compare-price{
+        font-size:1rem;
+    } */
+     .remove-compare-btn{
+        padding:8px 12px;
+        font-size:12px;
     }
 }
 .compare-table{
     width:100%;
+     min-width:700px;
     border-collapse:collapse;
     background:white;
     border-radius:12px;
@@ -145,8 +172,8 @@
 }
 
 .compare-image{
-    width:120px;
-    height:120px;
+    width:100px;
+    height:100px;
     object-fit:cover;
     border-radius:8px;
 }
@@ -155,12 +182,13 @@
     font-weight:bold;
 }
 .table-wrapper{
+    width:100%;
     overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+
 }
 
-.compare-table{
-    min-width:900px;
-}
+
 .compare-table td{
     padding:15px;
     text-align: center;
@@ -173,7 +201,7 @@
 
     text-decoration:line-through;
 
-    color:#888;
+    color:#555;
 
     font-size:0.9rem;
 
@@ -195,7 +223,7 @@
 
     display:inline-block;
 
-    background:#ff4d4d;
+    background:#15803D;
 
     color:white;
 

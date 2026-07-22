@@ -59,8 +59,8 @@
 
     text-decoration:line-through;
 
-    color:#888;
-
+    color:#555;
+    font-weight: 600;
     font-size:0.9rem;
 
     margin-bottom:5px;
@@ -70,7 +70,7 @@
 
     display:inline-block;
 
-    background:#ff4d4d;
+    background:#15803D;
 
     color:white;
 

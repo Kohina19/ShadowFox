@@ -112,7 +112,7 @@ document.addEventListener("click",(e)=>{
             JSON.stringify(wishlist)
         );
 
-        location.reload();
+        displayWishlist();
     }
 
     if(

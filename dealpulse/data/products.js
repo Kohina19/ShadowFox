@@ -99,5 +99,17 @@ const products = [
         image: "assets/images/study-table.jpeg",
         description: "Spacious wooden study table with a modern design and durable build.",
         stock: 5
-    }
+    },
+    {
+    id: 9,
+    name: "Kindle Paperwhite",
+    category: "Books",
+    originalPrice: 14999,
+    price: 11999,
+    discount: 20,
+    rating: 4.7,
+    image: "assets/images/kindle-paperwhite.webp",
+    description: "Lightweight e-reader with a glare-free display, adjustable warm light and weeks of battery life.",
+    stock: 12
+}
 ];

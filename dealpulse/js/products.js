@@ -11,7 +11,7 @@ const priceValue = document.getElementById("priceValue");
 function applyFilters(){
 
     let filteredProducts = [...products];
-
+   
     // Search Filter
     const searchValue =
         searchInput.value.toLowerCase();
@@ -72,7 +72,25 @@ if(selectedRating > 0){
         );
 
 }
-    displayProducts(filteredProducts);
+filteredProducts = applySorting(filteredProducts);
+
+displayProducts(filteredProducts);
+}
+function applySorting(productList){
+
+    if(sortDropdown.value === "low-high"){
+        productList.sort((a,b) => a.price - b.price);
+    }
+
+    else if(sortDropdown.value === "high-low"){
+        productList.sort((a,b) => b.price - a.price);
+    }
+
+    else if(sortDropdown.value === "rating"){
+        productList.sort((a,b) => b.rating - a.rating);
+    }
+
+    return productList;
 }
 function showToast(message){
 
@@ -143,8 +161,7 @@ productCount.textContent =
         ) || [];
     productList.forEach(product => {
         productGrid.innerHTML += `
-        <div class="product-card">
-
+       <div class="product-card">
     <button
         class="wishlist-btn"
         data-id="${product.id}"
@@ -185,12 +202,12 @@ ${
 </span>
 
         <div class="card-buttons">
-
-    <button
-        onclick="viewProduct(${product.id})"
-    >
-        View Details
-    </button>
+<button
+    onclick="viewProduct(${product.id})"
+>
+    View Details
+</button>
+    
 
 
     <button
@@ -213,6 +230,18 @@ ${
     });
 }
 const searchInput = document.getElementById("searchInput");
+const savedCategories =
+    JSON.parse(
+        localStorage.getItem("selectedCategories")
+    ) || [];
+
+categoryFilters.forEach(cb => {
+
+    if(savedCategories.includes(cb.value)){
+        cb.checked = true;
+    }
+
+});
 applyFilters();
 updateCartCount();
 searchInput.addEventListener(
@@ -246,6 +275,7 @@ function addToCart(productId) {
     showToast("Product added to cart!");
 }
 document.addEventListener("click", (e) => {
+    
     if(e.target.classList.contains("wishlist-btn")){
 
     const productId =
@@ -268,30 +298,29 @@ document.addEventListener("click", (e) => {
 }
 
 });
-sortDropdown.addEventListener("change", () => {
-
-    let sortedProducts = [...products];
-
-    if(sortDropdown.value === "low-high"){
-        sortedProducts.sort((a,b) => a.price - b.price);
-    }
-
-    else if(sortDropdown.value === "high-low"){
-        sortedProducts.sort((a,b) => b.price - a.price);
-    }
-
-    else if(sortDropdown.value === "rating"){
-        sortedProducts.sort((a,b) => b.rating - a.rating);
-    }
-
-    displayProducts(sortedProducts);
-});
+sortDropdown.addEventListener("change", applyFilters);
 categoryFilters.forEach(checkbox => {
 
-    checkbox.addEventListener(
-        "change",
-        applyFilters
-    );
+    checkbox.addEventListener("change", () => {
+
+        const selectedCategories = [];
+
+        categoryFilters.forEach(cb => {
+
+            if(cb.checked){
+                selectedCategories.push(cb.value);
+            }
+
+        });
+
+        localStorage.setItem(
+            "selectedCategories",
+            JSON.stringify(selectedCategories)
+        );
+
+        applyFilters();
+
+    });
 
 });
 
@@ -349,6 +378,7 @@ function addToCompare(productId){
 
     showToast("Added to compare");
 }
+
 function viewProduct(id){
 
     window.location.href =

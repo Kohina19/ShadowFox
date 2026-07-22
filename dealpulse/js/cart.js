@@ -52,13 +52,16 @@ function displayCart() {
     <h2>Total: ₹0</h2>
 `;
 
-        document.getElementById("checkoutBtn").style.display = "none";
-        document.getElementById("cartSummary").style.display = "none";
+        document.getElementById("checkoutLink").style.pointerEvents = "none";
+
+        document.getElementById("checkoutBtn").disabled = true;
+document.getElementById("clearCartBtn").disabled = true;
         return;
     }
 
-    document.getElementById("checkoutBtn").style.display = "inline-block";
-    document.getElementById("cartSummary").style.display = "flex";
+    document.getElementById("checkoutBtn").disabled= false;
+    document.getElementById("checkoutLink").style.pointerEvents = "auto";
+document.getElementById("clearCartBtn").disabled = false;
     let total = 0;
     let itemCount=0;
     const productCount = cart.length;
@@ -72,10 +75,13 @@ function displayCart() {
         <div class="cart-card">
 
             <img
-                src="${product.image}"
-                alt="${product.name}"
-                class="cart-image"
-            >
+    src="${product.image}"
+    alt="${product.name}"
+    class="cart-image"
+    width="220"
+    height="220"
+    fetchpriority="high"
+>
 
             <div class="cart-info">
                 <h3>${product.name}</h3>

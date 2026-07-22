@@ -5,6 +5,22 @@ const params =
 
 const productId =
     Number(params.get("id"));
+const category = params.get("category");
+
+const backBtn = document.getElementById("backBtn");
+updateCartCount();
+if(backBtn){
+
+    if(category){
+        backBtn.href =
+            `products.html?category=${category}`;
+    }
+    else{
+        backBtn.href =
+            "products.html";
+    }
+
+}
 const product =
     products.find(
         p => p.id === productId
@@ -160,7 +176,7 @@ recentProducts
         recentlyViewedContainer.innerHTML += `
 
             <div
-                class="related-card"
+                class="recently-viewed-card"
                 onclick="viewProduct(${item.id})"
             >
 
@@ -221,8 +237,8 @@ function addToCart(productId){
         "cart",
         JSON.stringify(cart)
     );
-
-    alert(`${selectedProduct.name} added to cart`);
+    updateCartCount();
+    showToast("Product added to cart!");
 }
 function addToCompare(productId){
 
@@ -250,12 +266,67 @@ function addToCompare(productId){
         "compare",
         JSON.stringify(compare)
     );
+    showToast("Added to Compare");
 
-    alert("Added to Compare");
 }
 function viewProduct(id){
 
-    window.location.href =
-        `product.html?id=${id}`;
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
+    const category =
+        params.get("category");
+
+    if(category){
+
+        window.location.href =
+            `product.html?id=${id}&category=${category}`;
+
+    }
+    else{
+
+        window.location.href =
+            `product.html?id=${id}`;
+
+    }
+
+}
+function updateCartCount(){
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const totalItems =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.quantity,
+            0
+        );
+
+    const cartLink =
+        document.getElementById("cartLink");
+
+    if(cartLink){
+        cartLink.textContent =
+            `Cart (${totalItems})`;
+    }
+}
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.style.opacity = "1";
+
+    setTimeout(() => {
+
+        toast.style.opacity = "0";
+
+    }, 3000);
 }

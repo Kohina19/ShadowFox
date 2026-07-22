@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealPulse - Products</title>
+    <title>Products | DealPulse</title>
+    <meta
+    name="description"
+    content="Browse and compare products across multiple categories with smart filters and sorting."
+>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/products.css">
 </head>
@@ -62,14 +66,17 @@
             <div class="filter-group">
                 <h3>Price Range</h3>
 
-                <input
-                    type="range"
-                    min="0"
-                    max="50000"
-                    value="50000"
-                    id="priceRange"
+                <label for="priceRange">
+    Maximum Price
+</label>
 
-                >
+<input
+    type="range"
+    min="0"
+    max="50000"
+    value="50000"
+    id="priceRange"
+>
 
                 <p id="priceValue">₹0 - ₹50,000</p>
             </div>
@@ -113,7 +120,9 @@ All Ratings</label>
                     class="search-box"
                     id="searchInput"
                 >
-
+                <label for="sortDropdown">
+    Sort Products
+</label>
                 <select class="sort-dropdown" id="sortDropdown">
     <option value="">Sort By</option>
     <option value="low-high">Price Low to High</option>

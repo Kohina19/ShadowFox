@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealPulse</title>
+    <meta
+    name="description"
+    content="DealPulse helps users compare products, track prices, manage wishlists and find the best deals online."
+>
+    <title>DealPulse | Smart Product Comparison Platform</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -47,10 +51,49 @@
         <h2>Popular Categories</h2>
 
         <div class="category-container">
-            <div class="category-card">Electronics</div>
-            <div class="category-card">Fashion</div>
-            <div class="category-card">Books</div>
-            <div class="category-card">Home</div>
+            <div
+    class="category-card" onclick="
+localStorage.setItem(
+'selectedCategories',
+JSON.stringify(['Electronics'])
+);
+window.location.href='products.html';
+"
+>
+    Electronics
+</div>
+            <div
+    class="category-card" onclick="
+localStorage.setItem(
+'selectedCategories',
+JSON.stringify(['Fashion'])
+);
+window.location.href='products.html';
+"
+>
+    Fashion
+</div>
+            <div
+    class="category-card" onclick="
+localStorage.setItem(
+'selectedCategories',
+JSON.stringify(['Books'])
+);
+window.location.href='products.html';
+"
+>
+    Books
+</div>
+            <div
+    class="category-card" onclick="
+localStorage.setItem(
+'selectedCategories',
+JSON.stringify(['Home'])
+);
+window.location.href='products.html';
+">
+    Home
+</div>
         </div>
     </section>
 
@@ -58,35 +101,9 @@
     <section class="featured-products">
         <h2>Featured Products</h2>
 
-        <div class="product-container">
+        <div class="product-container" id="featuredProducts">
 
-            <div class="product-card">
-                <img src="assets/images/samsung-m14.jpg" alt="placeholder">
-                <h3>Samsung Galaxy M14</h3>
-                <p>₹12,999</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/boat-rockerz.webp" alt="placeholder">
-                <h3>Boat Rockerz 450</h3>
-                <p>₹1,499</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/hp-laptop.webp" alt="placeholder">
-                <h3>HP Laptop</h3>
-                <p>₹49,999</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/kindle-paperwhite.webp" alt="placeholder">
-                <h3>Kindle Paperwhite</h3>
-                <p>₹11,999</p>
-                <button>View Details</button>
-            </div>
+           
 
         </div>
     </section>
@@ -95,6 +112,8 @@
     <footer>
         <p>&copy; 2026 DealPulse. All Rights Reserved.</p>
     </footer>
-    <script src="js/navbar.js"></script>
+    <script src="data/products.js"></script>
+<script src="js/home.js"></script>
+<script src="js/navbar.js"></script>
 </body>
 </html>

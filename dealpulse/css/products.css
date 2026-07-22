@@ -56,7 +56,7 @@
     transform:translateY(-5px);
 }
 .category{
-    color: gray;
+    color: #555;
     font-size: 0.9rem;
     margin: 5px 0;
 }
@@ -89,7 +89,7 @@
     margin-bottom:15px;
 }
 .rating{
-    color:#f4b400;
+    color:#444;
     margin-bottom:8px;
 }
 .product-card h3{
@@ -209,7 +209,7 @@
 
     text-decoration:line-through;
 
-    color:#888;
+    color:#666;
 
     font-size:0.9rem;
 
@@ -231,7 +231,7 @@
 
     display:inline-block;
 
-    background:#ff4d4d;
+    background:#15803D;
 
     color:white;
 

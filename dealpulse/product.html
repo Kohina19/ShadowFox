@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+    name="description"
+    content="View detailed product information, ratings, discounts, and related products on DealPulse."
+>
     <title>Product Details</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -26,7 +30,7 @@
 </header>
 
 <main>
-    <a href="products.html" class="back-btn">
+    <a href="products.html" class="back-btn" id="backBtn">
         ← Back to Products
     </a>
     <div id="productDetails"></div>
@@ -41,10 +45,10 @@
 
     <h2>Recently Viewed</h2>
 
-    <div id="recentlyViewed" class="product-grid"></div>
+    <div id="recentlyViewed" class="recently-viewed-grid"></div>
 
 </section>
-
+<div id="toast" class="toast"></div>
 </main>
 <footer>
     <p>© 2026 DealPulse. All Rights Reserved.</p>

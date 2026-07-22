@@ -55,6 +55,7 @@ compareActions.innerHTML = `
 
 compareContainer.innerHTML = "";
     compareContainer.innerHTML = `
+<div class="table-wrapper">
 <table class="compare-table">
 
     <tr>
@@ -86,70 +87,64 @@ compareContainer.innerHTML = "";
         ).join("")}
     </tr>
 
-   <tr>
-    <td>Price</td>
+    <tr>
+        <td>Price</td>
+        ${compare.map(product =>
+            `<td>
+                <p class="compare-original-price">
+                    ₹${(product.originalPrice || product.price).toLocaleString()}
+                </p>
 
-    ${compare.map(product =>
+                <p class="compare-price">
+                    ₹${product.price.toLocaleString()}
+                </p>
 
-        `<td>
+                <span class="compare-discount">
+                    ${product.discount || 0}% OFF
+                </span>
 
-            <p class="compare-original-price">
-                ₹${(product.originalPrice || product.price).toLocaleString()}
-            </p>
-
-            <p class="compare-price">
-                ₹${product.price.toLocaleString()}
-            </p>
-
-            <span class="compare-discount">
-                ${product.discount || 0}% OFF
-            </span>
-
-            ${
-                product.price === lowestPrice
-                ? "<br><br>✅ Best Price"
-                : ""
-            }
-
-        </td>`
-
-    ).join("")}
-
-</tr>
+                ${
+                    product.price === lowestPrice
+                    ? "<br><br>✅ Best Price"
+                    : ""
+                }
+            </td>`
+        ).join("")}
+    </tr>
 
     <tr>
-    <td>Rating</td>
+        <td>Rating</td>
 
-    ${compare.map(product =>
+        ${compare.map(product =>
+            `<td>
+                ⭐ ${product.rating}
+                ${
+                    product.rating === highestRating
+                    ? "<br>🏆 Highest Rated"
+                    : ""
+                }
+            </td>`
+        ).join("")}
+    </tr>
 
-        `<td>
-            ⭐ ${product.rating}
-
-            ${
-                product.rating === highestRating
-                ? "<br>🏆 Highest Rated"
-                : ""
-            }
-        </td>`
-
-    ).join("")}
-
-</tr>
     <tr>
-    <td>Action</td>
-    ${compare.map(product => `
-        <td>
-            <button
-                class="remove-compare-btn"
-                data-id="${product.id}"
-            >
-                Remove
-            </button>
-        </td>
-    `).join("")}
-</tr>
+        <td>Action</td>
+
+        ${compare.map(product =>
+            `<td>
+                <button
+                    class="remove-compare-btn"
+                    data-id="${product.id}"
+                >
+                    Remove
+                </button>
+            </td>`
+        ).join("")}
+    </tr>
 
 </table>
+
+</div>
 `;
 
     const clearCompareBtn =
