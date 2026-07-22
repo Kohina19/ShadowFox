@@ -150,13 +150,18 @@ DealPulse
 
 ## 📸 Screenshots
 
-Add screenshots of:
-- Home Page
-- Products Page
-- Product Details
-- Cart
-- Compare Page
-- Checkout Page
+| Home Page | Products Page |
+|-----------|--------------|
+| ![](screenshots/home.png) | ![](screenshots/products.png) |
+
+| Wishlist | Compare |
+|-----------|----------|
+| ![](screenshots/wishlist.png) | ![](screenshots/compare.png) |
+
+| Cart | Checkout |
+|------|----------|
+| ![](screenshots/cart.png) | ![](screenshots/checkout.png) |
+  
 
 ---
 
