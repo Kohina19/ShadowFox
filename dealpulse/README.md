@@ -2,6 +2,10 @@
 
 DealPulse is a smart product comparison and shopping assistant web application that helps users compare products, manage wishlists, track prices and make informed purchasing decisions.
 
+## 🌐 Live Demo
+
+https://dealpulse-eosin.vercel.app
+
 ## 🚀 Features
 
 ### 🏠 Home Page
